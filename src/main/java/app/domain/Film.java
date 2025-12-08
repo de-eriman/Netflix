@@ -6,9 +6,9 @@ public class Film {
     private Long id;
     private String name;
     private boolean active;
-    private int rating;
+    private Double rating;
 
-    public Film(String name, boolean active, int rating) {
+    public Film(String name, boolean active, Double rating) {
         this.name = name;
         this.active = active;
         this.rating = rating;
@@ -38,11 +38,11 @@ public class Film {
         this.active = active;
     }
 
-    public int getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 
@@ -60,7 +60,7 @@ public class Film {
 
     @Override
     public String toString() {
-        return "Film{" +
+        return "Films{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", active=" + active +
