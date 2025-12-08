@@ -7,11 +7,31 @@ public class Film {
     private String name;
     private boolean active;
     private Double rating;
+    private int year;
+    private String genre;
 
-    public Film(String name, boolean active, Double rating) {
+    public Film(String name, boolean active, Double rating, int year, String genre) {
         this.name = name;
         this.active = active;
         this.rating = rating;
+        this.year = year;
+        this.genre = genre;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public Long getId() {
@@ -60,11 +80,13 @@ public class Film {
 
     @Override
     public String toString() {
-        return "Films{" +
+        return "Film{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", active=" + active +
                 ", rating=" + rating +
+                ", year=" + year +
+                ", genre='" + genre + '\'' +
                 '}';
     }
 }
