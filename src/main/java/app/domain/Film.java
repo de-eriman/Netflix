@@ -60,7 +60,7 @@ public class Film {
 
     @Override
     public String toString() {
-        return "Film{" +
+        return "Films{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", active=" + active +
