@@ -10,9 +10,8 @@ public class Film {
     private int year;
     private String genre;
 
-    public Film(String name, boolean active, Double rating, int year, String genre) {
+    public Film(String name, Double rating, int year, String genre) {
         this.name = name;
-        this.active = active;
         this.rating = rating;
         this.year = year;
         this.genre = genre;

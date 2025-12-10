@@ -10,6 +10,10 @@ public class Customer {
     private boolean active;
     private final List<Film> library = new ArrayList<>();
 
+    public Customer(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
