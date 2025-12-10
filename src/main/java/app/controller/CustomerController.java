@@ -1,8 +1,10 @@
 package app.controller;
 
 import app.domain.Customer;
+import app.domain.Film;
 import app.service.CustomerService;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class CustomerController {
@@ -43,6 +45,25 @@ public class CustomerController {
     public int getActiveCustomersNumber() {
         return service.getActiveCustomersNumber();
     }
+
+
+    public void addFilmToCustomersLibrary(String customerIdS, String filmIdS){
+        Long customerId = Long.parseLong(customerIdS);
+        Long filmId = Long.parseLong(filmIdS);
+        service.addFilmToCustomersLibrary(customerId, filmId);
+    }
+
+    public void removeProductFromCustomersCart (String customerIdS, String filmIdS){
+        Long customerId = Long.parseLong(customerIdS);
+        Long filmId = Long.parseLong(filmIdS);
+        service.removeProductFromCustomersCart(customerId, filmId);
+    }
+
+    public void clearCustomersCart (String customerIdS){
+        Long customerId = Long.parseLong(customerIdS);
+        service.clearCustomersCart(customerId);
+    }
+
 
 
 

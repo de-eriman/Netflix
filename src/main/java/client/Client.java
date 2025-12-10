@@ -203,11 +203,14 @@ public class Client {
                 System.out.println("5 - Удалить покупателя по имени");
                 System.out.println("6 - Восстановить покупателя по id");
                 System.out.println("7 - Количество активных покупателей");
+                System.out.println("8 - Добавить фильм в библиотеку покупателя (addFilmToCustomersLibrary)");
+                System.out.println("9 - Удалить фильм из библиотеки покупателя (removeProductFromCustomersCart)");
+                System.out.println("10 - Очистить библиотеку покупателя (clearCustomersCart)");
                 System.out.println("0 - Назад");
                 System.out.print("Выберите опцию: ");
 
                 String input = scanner.nextLine().trim();
-                String id, name;
+                String id, name, customerId, filmId;
 
                 switch (input) {
                     case "1":
@@ -216,6 +219,7 @@ public class Client {
                         Customer saved = customerController.save(name);
                         System.out.println("Сохранено: " + saved);
                         break;
+
                     case "2":
                         List<Customer> customers = customerController.getAllActiveCustomers();
                         if (customers == null || customers.isEmpty()) {
@@ -224,35 +228,67 @@ public class Client {
                             customers.forEach(System.out::println);
                         }
                         break;
+
                     case "3":
                         System.out.print("Введите id: ");
                         id = scanner.nextLine();
                         Customer c = customerController.getActiveCustomerById(id);
                         System.out.println(c);
                         break;
+
                     case "4":
                         System.out.print("Введите id: ");
                         id = scanner.nextLine();
                         customerController.deleteById(id);
                         System.out.println("Покупатель удалён (помечен как неактивный).");
                         break;
+
                     case "5":
                         System.out.print("Введите имя покупателя: ");
                         name = scanner.nextLine();
                         customerController.deleteByName(name);
                         System.out.println("Покупатель(и) с именем \"" + name + "\" удалены (помечены как неактивные).");
                         break;
+
                     case "6":
                         System.out.print("Введите id: ");
                         id = scanner.nextLine();
                         customerController.restoreById(id);
                         System.out.println("Покупатель восстановлен (если такой был).");
                         break;
+
                     case "7":
                         System.out.println("Активных покупателей: " + customerController.getActiveCustomersNumber());
                         break;
+
+                    case "8":
+                        System.out.print("Введите id покупателя: ");
+                        customerId = scanner.nextLine();
+                        System.out.print("Введите id фильма: ");
+                        filmId = scanner.nextLine();
+                        customerController.addFilmToCustomersLibrary(customerId, filmId);
+                        System.out.println("Фильм добавлен в библиотеку покупателя.");
+                        break;
+
+                    case "9":
+                        System.out.print("Введите id покупателя: ");
+                        customerId = scanner.nextLine();
+                        System.out.print("Введите id фильма: ");
+                        filmId = scanner.nextLine();
+                        customerController.removeProductFromCustomersCart(customerId, filmId);
+                        System.out.println("Фильм удалён из библиотеки покупателя.");
+                        break;
+
+                    case "10":
+                        System.out.print("Введите id покупателя: ");
+                        customerId = scanner.nextLine();
+                        customerController.clearCustomersCart(customerId);
+                        System.out.println("Библиотека покупателя очищена.");
+                        break;
+
                     case "0":
                         return;
+
                     default:
                         System.out.println("Некорректный ввод!");
                 }
@@ -261,4 +297,5 @@ public class Client {
             }
         }
     }
+
 }

@@ -42,6 +42,8 @@ public class Customer {
         return library;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -56,12 +58,21 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "idas=" + id +
-                ", name='" + name + '\'' +
-                ", active=" + active +
-                ", library=" + library +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Customer {\n");
+        sb.append("  id = ").append(id).append(",\n");
+        sb.append("  name = '").append(name).append("',\n");
+        sb.append("  active = ").append(active).append(",\n");
+        sb.append("  library = [\n");
+
+        for (Film film : library) {
+            sb.append("    ").append(film).append("\n");
+        }
+
+        sb.append("  ]\n");
+        sb.append("}");
+        return sb.toString();
     }
+
 
 }

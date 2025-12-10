@@ -5,7 +5,9 @@ import app.exceptions.CustomerNotFoundException;
 import app.repository.CustomerRepository;
 
 import app.domain.Customer;
+import app.domain.Film;
 
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -74,9 +76,38 @@ public class CustomerService {
 
 
 
+    //    Добавить товар в корзину покупателя по их идентификаторам (если оба активны)
+    public void addFilmToCustomersLibrary(Long customerId, Long filmId) {
+        Customer customer = getActiveCustomerById(customerId);
+        Film film = filmService.getActiveFilmById(filmId);
+        customer.getLibrary().add(film);
+    }
 
+    //    Удалить товар из корзины покупателя по их идентификаторам
+    public void removeProductFromCustomersCart(Long customerId, Long filmId) {
+        // Подход 1. Удаление всех продуктов одного наименования из корзины.
+//        Customer customer = getActiveCustomerById(customerId);
+//        customer.getCart().removeIf(x -> x.getId().equals(filmId));
 
+        // Подход 2. Удаление только одного продукта нужного наименования.
+        Customer customer = getActiveCustomerById(customerId);
+        List<Film> cart = customer.getLibrary();
+        Iterator<Film> iterator = cart.iterator();
 
+        while (iterator.hasNext()) {
+            Film film = iterator.next();
+            if (film.getId().equals(filmId)) {
+                iterator.remove();
+                break;
+            }
+        }
+    }
+
+    //    Полностью очистить корзину покупателя по его идентификатору (если он активен)
+    public void clearCustomersCart(Long id) {
+        Customer customer = getActiveCustomerById(id);
+        customer.getLibrary().clear();
+    }
 
 
 }
